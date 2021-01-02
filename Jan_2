@@ -1,0 +1,30 @@
+
+class Solution {
+public:
+    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+        TreeNode* result = new TreeNode(0);
+        PreOrder(original,cloned,target,result);
+        
+        if(result->val == 0){
+            return NULL;
+        }
+        
+        return result;
+    }
+    
+    void PreOrder(TreeNode* original, TreeNode* cloned, TreeNode* target, TreeNode*& result){
+        if(original == NULL){
+            return;
+        }
+        
+        if(original == target){
+            result = cloned;
+            return;
+        }
+        
+        PreOrder(original->left, cloned->left, target, result);
+        PreOrder(original->right, cloned->right, target, result);
+    }
+};
+
+
